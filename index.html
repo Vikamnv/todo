@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon_package_v0/favicon-32x32.png"
+    />
+
+    <meta name="theme-color" content="#ffffff" />
+    <title>todo</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="scriptnew.js" defer></script>
+  </head>
+  <body>
+    <div class="block">
+      <nav class="nav_bar">
+        <button class="nav_btn" data-button-delete-all>Delete All</button>
+        <button class="nav_btn" data-button-delete-last>Delete Last</button>
+        <input type="text" placeholder="Enter todo" class="input-add" data-input-add/>
+        <button class="nav_btn nav_btn_add" data-btn_add>Add</button>
+      </nav>
+      <div class="search_bar">
+        <span data-all></span>
+        <span data-completed>Completed:</span>
+        <button class="searchbar_btn" data-button-show-all>Show all</button>
+        <button class="searchbar_btn" data-button-show-comp>Show completed</button>
+        <input type="text" placeholder="Search" data-input-search />
+      </div>
+      <div class="tasks" data-tasks>
+      </div>
+    </div>
+    <template data-todo-item-template>
+      <div class="task" data-task-container>
+        <div class="text_btn_cont">
+          <input type="checkbox" class="input_checked" data-task-checkbox>
+          <div class="tsk_text" data-task-text></div>
+          <button class="reset" data-task-reset></button>
+          </div>
+          <div class="date" data-task-date></div></div>
+    </template>
+  </body>
+</html>
