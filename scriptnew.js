@@ -9,9 +9,10 @@ const inputSearch = document.querySelector("[data-input-search]");
 const tasksContainer = document.querySelector("[data-tasks]");
 const template = document.querySelector("[data-todo-item-template]");
 const all = document.querySelector("[data-all]");
-const completed = document.querySelector('[data-completed]')
+const completed = document.querySelector("[data-completed]");
+const LOCAL_STORAGE_KEY = "todos";
 
-let todos = [];
+let todos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 
 btnAdd.addEventListener("click", () => {
   if (inputAdd.value.trim()) {
@@ -24,6 +25,7 @@ btnAdd.addEventListener("click", () => {
     todos.push(newTodo);
     inputAdd.value = "";
   }
+
   render();
 });
 
@@ -49,7 +51,7 @@ function createTodoItem(id, text, date, completed) {
   const checkbox = todoItem.querySelector("[data-task-checkbox]");
   checkbox.checked = completed;
 
-  todoDate.textContent = date.toLocaleDateString("en-CA");
+  todoDate.textContent = new Date(date).toLocaleDateString("en-CA");
 
   const btn_reset = todoItem.querySelector("[data-task-reset]");
   checkbox.addEventListener("change", () => {
@@ -66,6 +68,7 @@ function createTodoItem(id, text, date, completed) {
 
 deleteAll.addEventListener("click", () => {
   todos = [];
+  localStorage.clear();
   render();
 });
 deleteLast.addEventListener("click", () => {
@@ -134,16 +137,16 @@ function displayCompletedTodos() {
 function countAll() {
   all.textContent = `All: ${todos.length}`;
 }
-function countCompleted () {
-    const completedNumber =  todos.filter((el)=> el.completed)
-    completed.textContent=`Completed: ${completedNumber.length}`
-    console.log(completedNumber)
+function countCompleted() {
+  const completedNumber = todos.filter((el) => el.completed);
+  completed.textContent = `Completed: ${completedNumber.length}`;
 }
 
 function render() {
   clearTodoContainer();
   appendTodos();
   countAll();
-  countCompleted ()
+  countCompleted();
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
 }
 render();
